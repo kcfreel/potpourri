@@ -8,6 +8,7 @@
 # This is an in-development version on the GH page: https://github.com/ropensci/taxa 
 devtools::install_github("ropensci/taxa") # This download is a bit slow for me as of now- may be my home network..
 # install.packages('taxa') # Try only if ^this fails
+install.packages('taxa')
 library(taxa)
 ## Classes in {taxa}
 
@@ -37,6 +38,7 @@ taxon_rank(name = 'species', database = 'ncbi')
 
 # Add below how to call "name = 'species' to the Barcode of Life database.
 
+taxon_rank(name = 'species', database = 'bold') #Added KF
 
 # The taxon class combines the classes containing the name, rank, and ID for the taxon. 
 
@@ -46,7 +48,14 @@ x <- taxon(
   id = taxon_id(93036),
   authority = 'Linnaeus')
 
-# ^ What did I forget here? Add it in.
+(x <- taxon(
+        name = taxon_name("Poa annua"),
+        rank = taxon_rank("species"),
+        id = taxon_id(93036),
+        authority = "Linnaeus"
+)) #Get an error after using this, "Error in private$get_name() %11% "none" : object private' not found
+
+# ^ What did I forget here? Add it in. 
 
 # Taxonomic classifications are ordered, ranked taxa.
 # The hierarchy class stores a list of taxon classes like taxa in a correctly ordered classification.
