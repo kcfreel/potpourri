@@ -8,7 +8,6 @@
 # This is an in-development version on the GH page: https://github.com/ropensci/taxa 
 devtools::install_github("ropensci/taxa") # This download is a bit slow for me as of now- may be my home network..
 # install.packages('taxa') # Try only if ^this fails
-install.packages('taxa')
 library(taxa)
 ## Classes in {taxa}
 
@@ -78,7 +77,8 @@ z <- taxon(
   id = taxon_id(93036)
 )
 
-( <- hierarchy(z, y, x)) # Edit this.
+(hier1 <- hierarchy(z, y, x)) # Edit this.
+hier1
 
 # Multiple hierarchy classes are stored in the hierarchies class.
 
@@ -99,10 +99,12 @@ c <- taxon(
   rank = taxon_rank("species"),
   id = taxon_id(9696)
 )
+
 (pumaHier <- hierarchy(c, b, a))
 
 # Call both recently created hierarchies with the following format: hierarchies(hier1, hier2). Type below:
 
+hierarchies(hier1, pumaHier)
 
 # The taxonomy class stores unique taxon objects in a tree structure. 
 # Usually this kind of complex information would be the output of a file parsing function, 
@@ -124,9 +126,10 @@ tiger <- hierarchy(mammalia, felidae, panthera, tigris)
 cat <- hierarchy(mammalia, felidae, felis, catus)
 # Define the tomato hierarchy below:
 
+tomato <- hierarchy(plantae, solanaceae, solanum, lycopersicum)
 
 tax <- taxonomy(tiger, cat, tomato) # <- Note that you have to define tomato to get this to work.
-
+tax
 # roots: taxa that have no supertaxa.
 roots(tax, value = "taxon_names")
 
@@ -144,6 +147,6 @@ span(pumaHier, ranks(">= genus"))
 
 # Now, because you all may issue identical pull requests, here is a unique simple edit you can make:
 
-class.list <- as.list(c('lindsay')) # Add your name, and I can accept and merge these unique additions.
+class.list <- as.list(c('kelle')) # Add your name, and I can accept and merge these unique additions.
 
 ## Return to worksheet 9.
